@@ -1,0 +1,43 @@
+@use '../../tokens' as *;
+
+// Shared layout for checkbox, radio and switch: control + label + description.
+.ds-choice {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: token('space-2');
+
+  &__control {
+    display: inline-grid;
+    flex-shrink: 0;
+    place-items: center;
+    // Match the label's first line so the control stays vertically centered on it.
+    height: calc(#{token('font-size-sm')} * #{token('line-height-snug')});
+
+    > * {
+      grid-area: 1 / 1;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: token('space-0-5');
+  }
+
+  &__label {
+    color: token('color-text-primary');
+    cursor: pointer;
+    @include text('sm', 'regular', 'snug');
+  }
+
+  &__description {
+    color: token('color-text-secondary');
+    @include text('xs', 'regular', 'normal');
+  }
+
+  &--disabled &__label,
+  &--disabled &__description {
+    color: token('color-text-disabled');
+    cursor: not-allowed;
+  }
+}

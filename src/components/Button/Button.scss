@@ -1,0 +1,129 @@
+@use '../../tokens' as *;
+
+.ds-button {
+  // Tier 3 · Component tokens. Private custom properties that variants and
+  // sizes override, so the declarations below never need to be repeated.
+  --_bg: #{token('color-accent')};
+  --_bg-hover: #{token('color-accent-hover')};
+  --_bg-active: #{token('color-accent-active')};
+  --_fg: #{token('color-text-on-accent')};
+  --_border: transparent;
+  --_height: #{token('control-height-md')};
+  --_padding-x: #{token('space-4')};
+  --_font-size: #{token('font-size-sm')};
+  --_gap: #{token('space-2')};
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--_gap);
+  height: var(--_height);
+  padding: 0 var(--_padding-x);
+  border: 1px solid var(--_border);
+  border-radius: token('radius-md');
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-family: inherit;
+  font-size: var(--_font-size);
+  font-weight: token('font-weight-medium');
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  @include transition(background-color, border-color, color, box-shadow);
+  @include focus-visible;
+
+  &:not(:disabled):hover {
+    background-color: var(--_bg-hover);
+  }
+
+  &:not(:disabled):active {
+    background-color: var(--_bg-active);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  &--loading:disabled {
+    cursor: progress;
+    opacity: 0.8;
+  }
+
+  // ── Variants ──
+  &--secondary {
+    --_bg: #{token('color-bg-surface')};
+    --_bg-hover: #{token('color-bg-subtle')};
+    --_bg-active: #{token('color-bg-muted')};
+    --_fg: #{token('color-text-primary')};
+    --_border: #{token('color-border-default')};
+
+    box-shadow: token('shadow-sm');
+  }
+
+  &--ghost {
+    --_bg: transparent;
+    --_bg-hover: #{token('color-bg-subtle')};
+    --_bg-active: #{token('color-bg-muted')};
+    --_fg: #{token('color-text-primary')};
+  }
+
+  &--danger {
+    --_bg: #{token('color-danger')};
+    --_bg-hover: #{token('color-danger-hover')};
+    --_bg-active: #{token('color-danger-active')};
+    --_fg: #{token('color-text-on-accent')};
+  }
+
+  // ── Sizes ──
+  &--sm {
+    --_height: #{token('control-height-sm')};
+    --_padding-x: #{token('space-3')};
+    --_font-size: #{token('font-size-xs')};
+    --_gap: #{token('space-1-5')};
+  }
+
+  &--lg {
+    --_height: #{token('control-height-lg')};
+    --_padding-x: #{token('space-5')};
+    --_font-size: #{token('font-size-md')};
+  }
+
+  &--full-width {
+    display: flex;
+    width: 100%;
+  }
+
+  // ── Parts ──
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+
+    svg {
+      width: 1.15em;
+      height: 1.15em;
+    }
+  }
+
+  &__spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: token('radius-full');
+    animation: ds-button-spin 0.6s linear infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation-duration: 1.5s;
+    }
+  }
+}
+
+@keyframes ds-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

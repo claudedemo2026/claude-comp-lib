@@ -1,0 +1,73 @@
+@use '../../tokens' as *;
+
+.ds-select {
+  --_height: #{token('control-height-md')};
+  --_padding-x: #{token('space-3')};
+  --_font-size: #{token('font-size-sm')};
+
+  position: relative;
+  width: 100%;
+
+  &--sm {
+    --_height: #{token('control-height-sm')};
+    --_padding-x: #{token('space-2')};
+    --_font-size: #{token('font-size-xs')};
+  }
+
+  &--lg {
+    --_height: #{token('control-height-lg')};
+    --_padding-x: #{token('space-4')};
+    --_font-size: #{token('font-size-md')};
+  }
+
+  &__control {
+    appearance: none;
+    width: 100%;
+    height: var(--_height);
+    padding: 0 calc(var(--_padding-x) + 1.5rem) 0 var(--_padding-x);
+    font-family: inherit;
+    font-size: var(--_font-size);
+    cursor: pointer;
+    @include control-surface;
+
+    // Placeholder option is selected.
+    &:has(option[value='']:checked) {
+      color: token('color-text-tertiary');
+    }
+
+    &:not(:disabled):hover {
+      border-color: token('color-control-border-hover');
+    }
+
+    &:focus {
+      outline: none;
+      @include control-focus;
+    }
+
+    &:disabled {
+      background-color: token('color-control-bg-disabled');
+      color: token('color-text-disabled');
+      cursor: not-allowed;
+    }
+  }
+
+  &--invalid &__control,
+  &--invalid &__control:not(:disabled):hover {
+    border-color: token('color-danger');
+  }
+
+  &--invalid &__control:focus {
+    @include control-invalid-focus;
+  }
+
+  &__chevron {
+    position: absolute;
+    top: 50%;
+    right: var(--_padding-x);
+    width: 1rem;
+    height: 1rem;
+    color: token('color-text-secondary');
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+}

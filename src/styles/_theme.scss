@@ -1,0 +1,34 @@
+// Emits every token as a CSS custom property. Theme maps are swapped via the
+// `data-theme` attribute; without one, the user's OS preference is respected.
+@use 'sass:map';
+@use 'sass:meta';
+@use '../tokens/config' as c;
+@use '../tokens/tokens' as t;
+
+@mixin _emit($tokens) {
+  @each $name, $value in $tokens {
+    --#{c.$prefix}-#{$name}: #{meta.inspect($value)};
+  }
+}
+
+:root {
+  @include _emit(t.$scale-tokens);
+}
+
+:root,
+[data-theme='light'] {
+  @include _emit(map.get(t.$themes, 'light'));
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  @include _emit(map.get(t.$themes, 'dark'));
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include _emit(map.get(t.$themes, 'dark'));
+    color-scheme: dark;
+  }
+}

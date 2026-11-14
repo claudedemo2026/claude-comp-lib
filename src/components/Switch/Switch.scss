@@ -1,0 +1,49 @@
+@use '../../tokens' as *;
+
+.ds-switch {
+  --_track-width: 2rem;
+  --_track-height: 1.125rem;
+  --_thumb-size: 0.875rem;
+  --_inset: calc((var(--_track-height) - var(--_thumb-size)) / 2);
+
+  &__input {
+    appearance: none;
+    width: var(--_track-width);
+    height: var(--_track-height);
+    margin: 0;
+    border-radius: token('radius-full');
+    background-color: token('color-control-track');
+    cursor: pointer;
+    @include transition(background-color);
+    @include focus-visible;
+
+    &:checked {
+      background-color: token('color-accent');
+    }
+
+    &:checked:not(:disabled):hover {
+      background-color: token('color-accent-hover');
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__thumb {
+    justify-self: start;
+    width: var(--_thumb-size);
+    height: var(--_thumb-size);
+    margin-left: var(--_inset);
+    border-radius: token('radius-full');
+    background-color: token('color-control-thumb');
+    box-shadow: token('shadow-sm');
+    pointer-events: none;
+    @include transition(transform);
+  }
+
+  &__input:checked + &__thumb {
+    transform: translateX(calc(var(--_track-width) - var(--_thumb-size) - 2 * var(--_inset)));
+  }
+}

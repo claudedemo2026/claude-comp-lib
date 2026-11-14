@@ -1,0 +1,63 @@
+@use '../../tokens' as *;
+
+.ds-checkbox {
+  &__input {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    border: 1px solid token('color-control-border');
+    border-radius: token('radius-sm');
+    background-color: token('color-control-bg');
+    cursor: pointer;
+    @include transition(background-color, border-color);
+    @include focus-visible;
+
+    &:not(:disabled):hover {
+      border-color: token('color-control-border-hover');
+    }
+
+    &:checked,
+    &:indeterminate {
+      border-color: token('color-accent');
+      background-color: token('color-accent');
+    }
+
+    &:checked:not(:disabled):hover,
+    &:indeterminate:not(:disabled):hover {
+      border-color: token('color-accent-hover');
+      background-color: token('color-accent-hover');
+    }
+
+    &[aria-invalid='true'] {
+      border-color: token('color-danger');
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    color: token('color-text-on-accent');
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__input:checked:not(:indeterminate) ~ &__icon--check,
+  &__input:indeterminate ~ &__icon--dash {
+    opacity: 1;
+  }
+
+  &__input:disabled ~ &__icon {
+    opacity: 0;
+  }
+
+  &__input:disabled:checked:not(:indeterminate) ~ &__icon--check,
+  &__input:disabled:indeterminate ~ &__icon--dash {
+    opacity: 0.6;
+  }
+}

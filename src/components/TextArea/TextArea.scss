@@ -1,0 +1,52 @@
+@use '../../tokens' as *;
+
+.ds-textarea {
+  display: block;
+  width: 100%;
+  min-height: token('control-height-lg');
+  padding: token('space-2') token('space-3');
+  font-family: inherit;
+  @include text('sm', 'regular', 'normal');
+  @include control-surface;
+
+  &::placeholder {
+    color: token('color-text-tertiary');
+    opacity: 1;
+  }
+
+  &:not(:disabled):hover {
+    border-color: token('color-control-border-hover');
+  }
+
+  &:focus {
+    outline: none;
+    @include control-focus;
+  }
+
+  &--invalid,
+  &--invalid:not(:disabled):hover {
+    border-color: token('color-danger');
+  }
+
+  &--invalid:focus {
+    @include control-invalid-focus;
+  }
+
+  &:disabled {
+    background-color: token('color-control-bg-disabled');
+    color: token('color-text-disabled');
+    cursor: not-allowed;
+  }
+
+  &--resize-none {
+    resize: none;
+  }
+
+  &--resize-vertical {
+    resize: vertical;
+  }
+
+  &--resize-both {
+    resize: both;
+  }
+}

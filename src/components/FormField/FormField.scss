@@ -1,0 +1,37 @@
+@use '../../tokens' as *;
+
+.ds-field {
+  display: flex;
+  flex-direction: column;
+  gap: token('space-1-5');
+  min-width: 0;
+
+  &--disabled .ds-label {
+    color: token('color-text-disabled');
+  }
+
+  &__hint,
+  &__error {
+    margin: 0;
+    @include text('xs', 'regular', 'normal');
+  }
+
+  &__hint {
+    color: token('color-text-secondary');
+  }
+
+  &__error {
+    color: token('color-danger-text');
+  }
+}
+
+.ds-label {
+  display: inline-flex;
+  gap: token('space-1');
+  color: token('color-text-primary');
+  @include text('sm', 'medium', 'snug');
+
+  &__required {
+    color: token('color-danger-text');
+  }
+}

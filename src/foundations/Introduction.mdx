@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introduction" />
+
+# Component Library
+
+React + TypeScript components styled with SCSS and a three-tier design token system.
+Use the **Theme** toolbar button to switch between light and dark.
+
+## Design token architecture
+
+| Tier | Where | Example | Who uses it |
+| --- | --- | --- | --- |
+| **1 · Primitive** | `src/tokens/_primitives.scss` | `blue.600`, `space.4` | Only semantic tokens |
+| **2 · Semantic** | `src/tokens/_semantic.scss` | `color-accent`, `color-text-secondary` | Components |
+| **3 · Component** | each `Component.scss` | `--_bg`, `--_height` | That component's variants |
+
+- Every scale and semantic token is emitted as a CSS custom property (`--ds-color-accent`, `--ds-space-4`, …),
+  so themes switch at runtime through the `data-theme` attribute. With no attribute set, the OS preference applies.
+- Palette primitives are compile-time only. Components can't reach raw colors, only purposes.
+- In SCSS, reference tokens with `token('name')`. An unknown name **fails the build**.
+- The light and dark themes are checked to define exactly the same token names.
+
+```scss
+@use 'claude-comp-lib/tokens' as *;
+
+.card {
+  padding: token('space-6');
+  background: token('color-bg-surface');
+  border-radius: token('radius-lg');
+  @include focus-visible;
+}
+```
+
+## Usage
+
+```tsx
+import 'claude-comp-lib/styles.css';
+import { Button, FormField, Input, PageLayout } from 'claude-comp-lib';
+
+<PageLayout header={<AppBar />}>
+  <FormField label="Email" hint="We'll never share it.">
+    <Input type="email" />
+  </FormField>
+  <Button>Save</Button>
+</PageLayout>
+```

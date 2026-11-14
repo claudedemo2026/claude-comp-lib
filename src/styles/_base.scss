@@ -1,0 +1,19 @@
+// Minimal, opinionated base. Scoped to box-sizing and body typography so the
+// library doesn't fight a host application's own reset.
+@use '../tokens' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: token('color-bg-canvas');
+  color: token('color-text-primary');
+  font-family: token('font-family-sans');
+  @include text('md');
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

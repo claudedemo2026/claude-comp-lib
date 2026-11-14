@@ -1,0 +1,56 @@
+{
+  "name": "claude-comp-lib",
+  "version": "0.1.0",
+  "description": "A small React + TypeScript component library built on SCSS design tokens.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./tokens": "./src/tokens/_index.scss"
+  },
+  "files": [
+    "dist",
+    "src/tokens"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006",
+    "build": "npm run typecheck && vite build",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.19",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/blocks": "^8.6.14",
+    "@storybook/react": "^8.6.19",
+    "@storybook/react-vite": "^8.6.19",
+    "@storybook/test": "^8.6.19",
+    "@types/node": "^22.20.5",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sass": "^1.108.2",
+    "storybook": "^8.6.19",
+    "typescript": "~5.6",
+    "vite": "^6.4.6",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}

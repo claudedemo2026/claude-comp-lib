@@ -1,0 +1,86 @@
+@use '../../tokens' as *;
+
+.ds-input {
+  --_height: #{token('control-height-md')};
+  --_padding-x: #{token('space-3')};
+  --_font-size: #{token('font-size-sm')};
+
+  display: flex;
+  align-items: center;
+  gap: token('space-2');
+  width: 100%;
+  height: var(--_height);
+  padding: 0 var(--_padding-x);
+  cursor: text;
+  @include control-surface;
+
+  &:not(.ds-input--disabled):hover {
+    border-color: token('color-control-border-hover');
+  }
+
+  &:focus-within {
+    @include control-focus;
+  }
+
+  &--invalid,
+  &--invalid:not(.ds-input--disabled):hover {
+    border-color: token('color-danger');
+  }
+
+  &--invalid:focus-within {
+    @include control-invalid-focus;
+  }
+
+  &--disabled {
+    background-color: token('color-control-bg-disabled');
+    color: token('color-text-disabled');
+    cursor: not-allowed;
+  }
+
+  &--sm {
+    --_height: #{token('control-height-sm')};
+    --_padding-x: #{token('space-2')};
+    --_font-size: #{token('font-size-xs')};
+  }
+
+  &--lg {
+    --_height: #{token('control-height-lg')};
+    --_padding-x: #{token('space-4')};
+    --_font-size: #{token('font-size-md')};
+  }
+
+  &__control {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: var(--_font-size);
+
+    &::placeholder {
+      color: token('color-text-tertiary');
+      opacity: 1;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  &__adornment {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: token('color-text-secondary');
+    font-size: var(--_font-size);
+
+    svg {
+      width: 1.15em;
+      height: 1.15em;
+    }
+  }
+}
