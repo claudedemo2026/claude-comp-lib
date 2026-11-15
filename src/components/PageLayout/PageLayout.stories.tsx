@@ -21,7 +21,7 @@ const Header = () => (
 const Body = () => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
     <div>
-      <h1 style={{ margin: 0, fontSize: 'var(--ds-font-size-2xl)' }}>Settings</h1>
+      <h1 style={{ margin: 0, fontSize: 'var(--ds-font-size-2xl)', lineHeight: 'var(--ds-line-height-2xl)' }}>Settings</h1>
       <p style={{ margin: '4px 0 0', color: 'var(--ds-color-text-secondary)' }}>
         Manage your workspace preferences.
       </p>
@@ -32,8 +32,8 @@ const Body = () => (
         flexDirection: 'column',
         gap: 20,
         padding: 24,
-        background: 'var(--ds-color-bg-surface)',
-        border: '1px solid var(--ds-color-border-subtle)',
+        background: 'var(--ds-color-surface-default)',
+        border: 'var(--ds-border-width-default) solid var(--ds-color-border-default)',
         borderRadius: 'var(--ds-radius-lg)',
       }}
     >

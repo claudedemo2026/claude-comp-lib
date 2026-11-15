@@ -4,33 +4,42 @@ import { Meta } from '@storybook/blocks';
 
 # Component Library
 
-React + TypeScript components styled with SCSS and a three-tier design token system.
-Use the **Theme** toolbar button to switch between light and dark.
+React + TypeScript components styled with SCSS. Every visual value comes from
+**`src/tokens/theme.json`** (the `radixTheme` token set).
 
 ## Design token architecture
 
 | Tier | Where | Example | Who uses it |
 | --- | --- | --- | --- |
-| **1 · Primitive** | `src/tokens/_primitives.scss` | `blue.600`, `space.4` | Only semantic tokens |
-| **2 · Semantic** | `src/tokens/_semantic.scss` | `color-accent`, `color-text-secondary` | Components |
+| **Source** | `src/tokens/theme.json` | `colors.surface.primary.hover`, `fontSize.sm` | Edited by design |
+| **1 · Theme + structural** | `_generated-theme.scss` (from theme.json), `_primitives.scss` (space, shadow, motion, z-index) | `color-surface-primary-hover`, `space-4` | Components |
+| **2 · Derived** | `src/tokens/_semantic.scss` | `color-focus-halo` (border.focus × opacity.transparency) | Components |
 | **3 · Component** | each `Component.scss` | `--_bg`, `--_height` | That component's variants |
 
-- Every scale and semantic token is emitted as a CSS custom property (`--ds-color-accent`, `--ds-space-4`, …),
-  so themes switch at runtime through the `data-theme` attribute. With no attribute set, the OS preference applies.
-- Palette primitives are compile-time only. Components can't reach raw colors, only purposes.
+- theme.json paths are flattened to kebab-case: `colors.surface.neutralLight` → `color-surface-neutral-light`,
+  `borderRadius.md` → `radius-md`, `borderWidth.thick` → `border-width-thick`.
+- Font sizes and line heights are converted from px to rem; radius and border widths stay in px.
+- Every token is emitted as a CSS custom property on `:root` (`--ds-color-text-default`, `--ds-space-4`, …).
 - In SCSS, reference tokens with `token('name')`. An unknown name **fails the build**.
-- The light and dark themes are checked to define exactly the same token names.
+- After editing theme.json, run `npm run tokens` (it also runs automatically before `dev` and `build`).
 
 ```scss
 @use 'claude-comp-lib/tokens' as *;
 
 .card {
   padding: token('space-6');
-  background: token('color-bg-surface');
+  background: token('color-surface-default');
+  border: token('border-width-default') solid token('color-border-default');
   border-radius: token('radius-lg');
+  @include text('sm', 'medium'); // 14px / 20px, weight 500
   @include focus-visible;
 }
 ```
+
+## Fonts
+
+The theme uses **DM Sans** (body), **Roboto** (titles) and **Chivo Mono** (financials).
+The library doesn't bundle them. Load them in your app, e.g. from Google Fonts.
 
 ## Usage
 

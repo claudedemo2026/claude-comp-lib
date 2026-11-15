@@ -13,7 +13,7 @@
   &__hint,
   &__error {
     margin: 0;
-    @include text('xs', 'regular', 'normal');
+    @include text('xs');
   }
 
   &__hint {
@@ -21,17 +21,17 @@
   }
 
   &__error {
-    color: token('color-danger-text');
+    color: token('color-text-destructive');
   }
 }
 
 .ds-label {
   display: inline-flex;
   gap: token('space-1');
-  color: token('color-text-primary');
-  @include text('sm', 'medium', 'snug');
+  color: token('color-text-default');
+  @include text('sm', 'medium');
 
   &__required {
-    color: token('color-danger-text');
+    color: token('color-text-destructive');
   }
 }

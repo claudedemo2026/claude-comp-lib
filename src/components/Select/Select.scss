@@ -32,11 +32,11 @@
 
     // Placeholder option is selected.
     &:has(option[value='']:checked) {
-      color: token('color-text-tertiary');
+      color: token('color-text-placeholder');
     }
 
     &:not(:disabled):hover {
-      border-color: token('color-control-border-hover');
+      border-color: token('color-border-hover');
     }
 
     &:focus {
@@ -45,7 +45,8 @@
     }
 
     &:disabled {
-      background-color: token('color-control-bg-disabled');
+      border-color: token('color-border-disabled');
+      background-color: token('color-surface-input-disabled');
       color: token('color-text-disabled');
       cursor: not-allowed;
     }
@@ -53,11 +54,15 @@
 
   &--invalid &__control,
   &--invalid &__control:not(:disabled):hover {
-    border-color: token('color-danger');
+    border-color: token('color-border-destructive-default');
   }
 
   &--invalid &__control:focus {
     @include control-invalid-focus;
+  }
+
+  &__control:disabled ~ &__chevron {
+    color: token('color-icon-disabled');
   }
 
   &__chevron {
@@ -66,7 +71,7 @@
     right: var(--_padding-x);
     width: 1rem;
     height: 1rem;
-    color: token('color-text-secondary');
+    color: token('color-icon-default');
     pointer-events: none;
     transform: translateY(-50%);
   }

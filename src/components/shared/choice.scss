@@ -11,7 +11,7 @@
     flex-shrink: 0;
     place-items: center;
     // Match the label's first line so the control stays vertically centered on it.
-    height: calc(#{token('font-size-sm')} * #{token('line-height-snug')});
+    height: token('line-height-sm');
 
     > * {
       grid-area: 1 / 1;
@@ -25,14 +25,14 @@
   }
 
   &__label {
-    color: token('color-text-primary');
+    color: token('color-text-default');
     cursor: pointer;
-    @include text('sm', 'regular', 'snug');
+    @include text('sm');
   }
 
   &__description {
     color: token('color-text-secondary');
-    @include text('xs', 'regular', 'normal');
+    @include text('xs');
   }
 
   &--disabled &__label,

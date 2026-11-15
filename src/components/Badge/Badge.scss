@@ -1,0 +1,71 @@
+@use '../../tokens' as *;
+
+$_hues: 'blue', 'brown', 'cyan', 'green', 'indigo', 'jade', 'lavender', 'mint', 'olive', 'orange', 'pink', 'purple', 'red', 'sky', 'teal', 'yellow';
+
+.ds-badge {
+  // Tier 3 · Component tokens. Color modifiers set the pair; variants pick the order.
+  --_light: #{token('color-accent-light-grey')};
+  --_dark: #{token('color-text-secondary')};
+  --_bg: var(--_light);
+  --_fg: var(--_dark);
+  --_height: 1.5rem;
+  --_padding-x: #{token('space-2')};
+
+  display: inline-flex;
+  align-items: center;
+  gap: token('space-1');
+  height: var(--_height);
+  padding: 0 var(--_padding-x);
+  border-radius: token('radius-xl');
+  background-color: var(--_bg);
+  color: var(--_fg);
+  font-family: inherit;
+  white-space: nowrap;
+  vertical-align: middle;
+  @include text('xs', 'medium');
+
+  // ── Colors ──
+  @each $hue in $_hues {
+    &--#{$hue} {
+      --_light: #{token('color-accent-light-#{$hue}')};
+      --_dark: #{token('color-accent-dark-#{$hue}')};
+    }
+  }
+
+  // ── Variants ──
+  &--solid {
+    --_bg: var(--_dark);
+    --_fg: #{token('color-text-inverse')};
+  }
+
+  &--neutral#{&}--solid {
+    --_bg: #{token('color-surface-inverse')};
+  }
+
+  // ── Sizes ──
+  &--sm {
+    --_height: 1.125rem;
+    --_padding-x: #{token('space-1-5')};
+
+    @include text('2xs', 'medium');
+  }
+
+  // ── Parts ──
+  &__dot {
+    flex-shrink: 0;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: token('radius-xl');
+    background-color: currentColor;
+  }
+
+  &__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+
+    svg {
+      width: 1.1em;
+      height: 1.1em;
+    }
+  }
+}

@@ -6,43 +6,55 @@
     width: 1rem;
     height: 1rem;
     margin: 0;
-    border: 1px solid token('color-control-border');
-    border-radius: token('radius-sm');
-    background-color: token('color-control-bg');
+    border: token('border-width-default') solid token('color-border-default');
+    border-radius: token('radius-md');
+    background-color: token('color-surface-default');
     cursor: pointer;
     @include transition(background-color, border-color);
     @include focus-visible;
 
     &:not(:disabled):hover {
-      border-color: token('color-control-border-hover');
+      border-color: token('color-border-hover');
     }
 
     &:checked,
     &:indeterminate {
-      border-color: token('color-accent');
-      background-color: token('color-accent');
+      border-color: token('color-border-primary-default');
+      background-color: token('color-surface-primary-default');
     }
 
     &:checked:not(:disabled):hover,
     &:indeterminate:not(:disabled):hover {
-      border-color: token('color-accent-hover');
-      background-color: token('color-accent-hover');
+      border-color: token('color-border-primary-hover');
+      background-color: token('color-surface-primary-hover');
+    }
+
+    &:checked:not(:disabled):active,
+    &:indeterminate:not(:disabled):active {
+      border-color: token('color-border-primary-pressed');
+      background-color: token('color-surface-primary-pressed');
     }
 
     &[aria-invalid='true'] {
-      border-color: token('color-danger');
+      border-color: token('color-border-destructive-default');
     }
 
     &:disabled {
+      border-color: token('color-border-disabled');
+      background-color: token('color-surface-input-disabled');
       cursor: not-allowed;
-      opacity: 0.5;
+    }
+
+    &:disabled:checked,
+    &:disabled:indeterminate {
+      background-color: token('color-surface-neutral-dark');
     }
   }
 
   &__icon {
     width: 1rem;
     height: 1rem;
-    color: token('color-text-on-accent');
+    color: token('color-icon-inverse');
     opacity: 0;
     pointer-events: none;
   }
@@ -50,14 +62,5 @@
   &__input:checked:not(:indeterminate) ~ &__icon--check,
   &__input:indeterminate ~ &__icon--dash {
     opacity: 1;
-  }
-
-  &__input:disabled ~ &__icon {
-    opacity: 0;
-  }
-
-  &__input:disabled:checked:not(:indeterminate) ~ &__icon--check,
-  &__input:disabled:indeterminate ~ &__icon--dash {
-    opacity: 0.6;
   }
 }

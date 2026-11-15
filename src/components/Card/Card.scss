@@ -1,0 +1,47 @@
+@use '../../tokens' as *;
+
+.ds-card {
+  --_bg: #{token('color-surface-default')};
+  --_border: #{token('color-border-default')};
+  --_shadow: none;
+  --_padding: #{token('space-4')};
+
+  display: block;
+  min-width: 0;
+  padding: var(--_padding);
+  border: token('border-width-default') solid var(--_border);
+  border-radius: token('radius-lg');
+  background-color: var(--_bg);
+  box-shadow: var(--_shadow);
+  color: token('color-text-default');
+
+  // ── Variants ──
+  &--elevated {
+    --_border: transparent;
+    --_shadow: #{token('shadow-md')};
+  }
+
+  &--filled {
+    --_bg: #{token('color-surface-neutral-light')};
+    --_border: transparent;
+  }
+
+  // ── Padding ──
+  &--padding-none {
+    --_padding: 0;
+
+    overflow: hidden; // Clip edge-to-edge media to the rounded corners.
+  }
+
+  &--padding-sm {
+    --_padding: #{token('space-3')};
+  }
+
+  &--padding-lg {
+    --_padding: #{token('space-6')};
+  }
+}
+
+li.ds-card {
+  list-style: none;
+}

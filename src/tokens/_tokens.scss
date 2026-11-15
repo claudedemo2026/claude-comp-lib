@@ -1,18 +1,24 @@
-// Aggregates primitives + semantic themes into the flat maps that get emitted
-// as CSS custom properties (see styles/_theme.scss) and validated by token().
-@use 'sass:list';
+// Aggregates theme.json values + structural primitives into the flat map that
+// gets emitted as CSS custom properties (see styles/_theme.scss) and validated
+// by token().
 @use 'sass:map';
+@use 'generated-theme' as theme;
 @use 'primitives' as p;
 @use 'semantic' as s;
 
-// Scales that are theme-independent and emitted as `--ds-<group>-<key>`.
-$_scales: (
+// Every group is emitted as `--ds-<group>-<key>`.
+$_groups: (
+  // From theme.json
+  'color': s.$colors,
+  'radius': theme.$radius,
+  'border-width': theme.$border-width,
+  'font-family': theme.$font-family,
+  'font-size': theme.$font-size,
+  'font-weight': theme.$font-weight,
+  'line-height': theme.$line-height,
+  'opacity': theme.$opacity,
+  // Structural primitives
   'space': p.$space,
-  'radius': p.$radius,
-  'font-family': p.$font-family,
-  'font-size': p.$font-size,
-  'font-weight': p.$font-weight,
-  'line-height': p.$line-height,
   'shadow': p.$shadow,
   'duration': p.$duration,
   'easing': p.$easing,
@@ -31,11 +37,5 @@ $_scales: (
   @return $out;
 }
 
-$scale-tokens: _flatten($_scales);
-
-$themes: (
-  'light': s.$light,
-  'dark': s.$dark,
-);
-
-$token-names: list.join(map.keys($scale-tokens), map.keys(s.$light));
+$tokens: _flatten($_groups);
+$token-names: map.keys($tokens);

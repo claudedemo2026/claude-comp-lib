@@ -15,7 +15,7 @@
   @include control-surface;
 
   &:not(.ds-input--disabled):hover {
-    border-color: token('color-control-border-hover');
+    border-color: token('color-border-hover');
   }
 
   &:focus-within {
@@ -24,7 +24,7 @@
 
   &--invalid,
   &--invalid:not(.ds-input--disabled):hover {
-    border-color: token('color-danger');
+    border-color: token('color-border-destructive-default');
   }
 
   &--invalid:focus-within {
@@ -32,9 +32,14 @@
   }
 
   &--disabled {
-    background-color: token('color-control-bg-disabled');
+    border-color: token('color-border-disabled');
+    background-color: token('color-surface-input-disabled');
     color: token('color-text-disabled');
     cursor: not-allowed;
+  }
+
+  &--disabled &__adornment {
+    color: token('color-icon-disabled');
   }
 
   &--sm {
@@ -62,7 +67,7 @@
     font-size: var(--_font-size);
 
     &::placeholder {
-      color: token('color-text-tertiary');
+      color: token('color-text-placeholder');
       opacity: 1;
     }
 
@@ -75,7 +80,7 @@
     display: inline-flex;
     flex-shrink: 0;
     align-items: center;
-    color: token('color-text-secondary');
+    color: token('color-icon-default');
     font-size: var(--_font-size);
 
     svg {

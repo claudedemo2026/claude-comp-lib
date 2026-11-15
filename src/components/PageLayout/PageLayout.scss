@@ -9,8 +9,8 @@
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
   min-height: 100dvh;
-  background-color: token('color-bg-canvas');
-  color: token('color-text-primary');
+  background-color: token('color-surface-neutral-light');
+  color: token('color-text-default');
 
   @include breakpoint-up('md') {
     --_gutter: #{token('space-6')};
@@ -34,8 +34,8 @@
   }
 
   &__header {
-    border-bottom: 1px solid token('color-border-subtle');
-    background-color: token('color-bg-surface');
+    border-bottom: token('border-width-default') solid token('color-border-default');
+    background-color: token('color-surface-default');
 
     &--sticky {
       position: sticky;
@@ -58,7 +58,7 @@
 
   &__footer {
     padding-block: token('space-6');
-    border-top: 1px solid token('color-border-subtle');
+    border-top: token('border-width-default') solid token('color-border-default');
     color: token('color-text-secondary');
     @include text('sm');
   }
@@ -77,7 +77,7 @@
       padding: token('space-2') token('space-4');
       clip: auto;
       border-radius: token('radius-md');
-      background-color: token('color-bg-inverse');
+      background-color: token('color-surface-inverse');
       color: token('color-text-inverse');
       text-decoration: none;
       @include text('sm', 'medium');

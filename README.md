@@ -12,7 +12,7 @@ React + TypeScript component library styled with SCSS design tokens, showcased i
 
 ## Components
 
-`Button` · `Input` · `TextArea` · `Select` · `Checkbox` · `RadioGroup` / `Radio` · `Switch` · `FormField` / `Label` · `PageLayout`
+`Badge` · `Button` · `Card` · `Chip` · `Input` · `TextArea` · `Select` · `Checkbox` · `RadioGroup` / `Radio` · `Switch` · `FormField` / `Label` · `PageLayout`
 
 - `FormField` wires label, hint and error to the control inside it (`id`, `aria-describedby`, `aria-invalid`, `required`, `disabled`) through context.
 - `PageLayout` has a `header` slot, a body (`children`), an optional `footer`, a `maxWidth`, an optional sticky header, and a skip link.
@@ -20,20 +20,27 @@ React + TypeScript component library styled with SCSS design tokens, showcased i
 
 ## Design tokens
 
+`src/tokens/theme.json` is the source of truth. `npm run tokens` turns it into Sass maps (it also runs before `dev`, `storybook` and `build`; `npm run tokens:check` fails if the generated file is stale).
+
 ```
 src/tokens/
-  _primitives.scss  Tier 1: raw palette + scales (space, radius, type, shadow, motion…)
-  _semantic.scss    Tier 2: purpose-named colors per theme (light, dark); themes are checked for parity
-  _tokens.scss      Flattens tiers into emit-ready maps + the list of valid names
-  _functions.scss   token('name') → var(--ds-name), and fails the build on unknown names
-  _mixins.scss      focus-ring, control-surface, text(), transition(), breakpoint-up()…
+  theme.json             Source tokens: colors, radius, border width, type, opacity
+  _generated-theme.scss  GENERATED from theme.json. Don't edit by hand
+  _primitives.scss       Scales theme.json doesn't cover: space, shadow, motion, z-index, sizes
+  _semantic.scss         Colors derived from theme values (focus halos)
+  _tokens.scss           Flattens everything into emit-ready maps + the list of valid names
+  _functions.scss        token('name') → var(--ds-name), and fails the build on unknown names
+  _mixins.scss           focus-ring, control-surface, text(), transition(), breakpoint-up()…
+scripts/build-tokens.mjs theme.json → _generated-theme.scss
 src/styles/
-  _theme.scss       Emits CSS custom properties for :root, [data-theme='dark'], prefers-color-scheme
+  _theme.scss            Emits CSS custom properties on :root
 ```
+
+theme.json paths are flattened to kebab-case: `colors.surface.primary.hover` → `token('color-surface-primary-hover')`, `borderRadius.md` → `token('radius-md')`. Font sizes and line heights become rem.
 
 Tier 3 lives in each component's SCSS as private custom properties (`--_bg`, `--_height`). Variants and sizes only override those properties.
 
-Switch themes by setting `data-theme="light" | "dark"` on any ancestor. With no attribute, the OS preference applies.
+The theme fonts (DM Sans, Roboto, Chivo Mono) aren't bundled. Load them in the host app.
 
 ## Consuming
 
@@ -44,5 +51,5 @@ import { Button, FormField, Input } from 'claude-comp-lib';
 
 ```scss
 @use 'claude-comp-lib/tokens' as *;
-.card { padding: token('space-6'); background: token('color-bg-surface'); }
+.card { padding: token('space-6'); background: token('color-surface-default'); }
 ```

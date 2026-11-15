@@ -1,0 +1,250 @@
+{
+  "themeName": "radixTheme",
+  "mode": "default",
+  "borderRadius": {
+    "lg": 8,
+    "md": 4,
+    "none": 0,
+    "xl": 48
+  },
+  "borderWidth": {
+    "default": 1,
+    "none": 0,
+    "thick": 2,
+    "thicker": 3
+  },
+  "colors": {
+    "accent": {
+      "dark": {
+        "blue": "#145B92",
+        "brown": "#602F2F",
+        "cyan": "#002940",
+        "gold": "#FED047",
+        "green": "#68872E",
+        "indigo": "#3328A9",
+        "jade": "#053D38",
+        "lavender": "#8309FF",
+        "mint": "#088262",
+        "olive": "#616A00",
+        "orange": "#803B00",
+        "pink": "#C60BB0",
+        "purple": "#4F1466",
+        "red": "#B5321B",
+        "sky": "#177D90",
+        "teal": "#04342C",
+        "yellow": "#A2700B"
+      },
+      "light": {
+        "blue": "#E1F2FF",
+        "brown": "#EFEAEA",
+        "cyan": "#E9FCFF",
+        "green": "#F2FBE8",
+        "grey": "#F1F1F1",
+        "indigo": "#D4CAFB",
+        "jade": "#E6F5F4",
+        "lavender": "#F8F0FF",
+        "mint": "#EEFFFB",
+        "olive": "#F8FAE5",
+        "orange": "#FFEBD9",
+        "pink": "#FFF1FD",
+        "purple": "#E7CEF2",
+        "red": "#FFF1F0",
+        "sky": "#E9FCFF",
+        "teal": "#C2F5E9",
+        "yellow": "#FFF6D9"
+      }
+    },
+    "border": {
+      "blueBg": "#E1F2FF",
+      "default": "#D9D9D9",
+      "defaultSelection": "#595959",
+      "destructive": {
+        "default": "#D93C20",
+        "hover": "#B5321B",
+        "pressed": "#912815"
+      },
+      "disabled": "#B3B3B3",
+      "focus": "#1B9BFF",
+      "hover": "#999999",
+      "inverse": "#FFFFFF",
+      "primary": {
+        "default": "#1E88DB",
+        "hover": "#1971B6",
+        "pressed": "#145B92"
+      },
+      "secondary": {
+        "default": "#FED047",
+        "hover": "#FEC211",
+        "pressed": "#D7A201"
+      },
+      "success": "#99C24D",
+      "warning": "#FFA630"
+    },
+    "icon": {
+      "default": "#595959",
+      "destructive": "#D93C20",
+      "disabled": "#B3B3B3",
+      "hover": "#1971B6",
+      "inverse": "#FFFFFF",
+      "links": {
+        "destructive": {
+          "default": "#D93C20",
+          "hover": "#B5321B",
+          "pressed": "#912815"
+        },
+        "primary": {
+          "default": "#1E88DB",
+          "hover": "#1971B6",
+          "pressed": "#145B92"
+        },
+        "secondary": {
+          "default": "#595959",
+          "hover": "#404040",
+          "pressed": "#262626"
+        }
+      },
+      "pressed": "#145B92",
+      "success": "#99C24D",
+      "warning": "#FFA630"
+    },
+    "mainColour": "#0000001A",
+    "surface": {
+      "button": {
+        "disable": "#E6E6E6"
+      },
+      "default": "#FFFFFF",
+      "destructive": {
+        "default": "#D93C20",
+        "hover": "#B5321B",
+        "light": {
+          "default": "#FFF1F0",
+          "hover": "#FFE6E4",
+          "pressed": "#F2D4CE"
+        },
+        "pressed": "#912815"
+      },
+      "input": {
+        "disabled": "#F8F8F8"
+      },
+      "inverse": "#262626",
+      "neutral": "#F1F1F1",
+      "neutralDark": "#CCCCCC",
+      "neutralLight": "#F8F8F8",
+      "primary": {
+        "blur": "#09294259",
+        "dark": {
+          "default": "#092942",
+          "hover": "#145B92"
+        },
+        "default": "#1E88DB",
+        "focus": "#1B9BFF",
+        "hover": "#1971B6",
+        "light": {
+          "default": "#F8FCFF",
+          "hover": "#F1F9FF",
+          "pressed": "#E1F2FF"
+        },
+        "pressed": "#145B92"
+      },
+      "secondary": {
+        "default": "#FED047",
+        "hover": "#FEC211",
+        "light": {
+          "default": "#FFF6D9",
+          "hover": "#FFEDB2",
+          "pressed": "#FFDF79"
+        },
+        "pressed": "#D7A201"
+      },
+      "success": {
+        "default": "#99C24D",
+        "hover": "#81A83A",
+        "light": "#F2FBE8",
+        "pressed": "#68872E"
+      },
+      "tertiary": {
+        "default": "#95EFD5",
+        "hover": "#74E2C2",
+        "pressed": "#4FC3A1"
+      },
+      "translucent": "#000000CC",
+      "transparent": "#FFFFFF00",
+      "warning": {
+        "default": "#FFA630",
+        "hover": "#FD9000",
+        "light": "#FFEBD9",
+        "pressed": "#CA7300"
+      }
+    },
+    "text": {
+      "default": "#000000",
+      "destructive": "#D93C20",
+      "disabled": "#B3B3B3",
+      "inverse": "#FFFFFF",
+      "link": {
+        "destructive": {
+          "default": "#D93C20",
+          "hover": "#B5321B",
+          "pressed": "#912815"
+        },
+        "inverse": "#FFFFFF",
+        "primary": {
+          "default": "#1E88DB",
+          "hover": "#1971B6",
+          "pressed": "#145B92"
+        },
+        "secondary": {
+          "default": "#595959",
+          "hover": "#404040",
+          "pressed": "#262626"
+        }
+      },
+      "placeholder": "#999999",
+      "secondary": "#404040"
+    }
+  },
+  "fontFamily": {
+    "body": "DM Sans",
+    "financials": "Chivo Mono",
+    "title": "Roboto"
+  },
+  "fontSize": {
+    "2lg": 20,
+    "2xl": 30,
+    "2xs": 10,
+    "3xl": 48,
+    "3xs": 8,
+    "lg": 18,
+    "md": 16,
+    "sm": 14,
+    "xl": 24,
+    "xs": 12
+  },
+  "fontWeight": {
+    "black": 900,
+    "bold": 700,
+    "extrabold": 800,
+    "extralight": 200,
+    "light": 300,
+    "medium": 500,
+    "regular": 400,
+    "semibold": 600,
+    "thin": 100
+  },
+  "lineHeight": {
+    "2xl": 34,
+    "2xs": 12,
+    "3xl": 40,
+    "3xs": 8,
+    "4xl": 48,
+    "4xs": 4,
+    "lg": 26,
+    "md": 24,
+    "sm": 20,
+    "xl": 30,
+    "xs": 16
+  },
+  "opacity": {
+    "transparency": 0.2
+  }
+}

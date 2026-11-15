@@ -6,16 +6,16 @@
   min-height: token('control-height-lg');
   padding: token('space-2') token('space-3');
   font-family: inherit;
-  @include text('sm', 'regular', 'normal');
+  @include text('sm');
   @include control-surface;
 
   &::placeholder {
-    color: token('color-text-tertiary');
+    color: token('color-text-placeholder');
     opacity: 1;
   }
 
   &:not(:disabled):hover {
-    border-color: token('color-control-border-hover');
+    border-color: token('color-border-hover');
   }
 
   &:focus {
@@ -25,7 +25,7 @@
 
   &--invalid,
   &--invalid:not(:disabled):hover {
-    border-color: token('color-danger');
+    border-color: token('color-border-destructive-default');
   }
 
   &--invalid:focus {
@@ -33,7 +33,8 @@
   }
 
   &:disabled {
-    background-color: token('color-control-bg-disabled');
+    border-color: token('color-border-disabled');
+    background-color: token('color-surface-input-disabled');
     color: token('color-text-disabled');
     cursor: not-allowed;
   }

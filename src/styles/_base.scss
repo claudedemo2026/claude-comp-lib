@@ -10,10 +10,19 @@
 
 body {
   margin: 0;
-  background-color: token('color-bg-canvas');
-  color: token('color-text-primary');
-  font-family: token('font-family-sans');
+  background-color: token('color-surface-default');
+  color: token('color-text-default');
+  font-family: token('font-family-body');
   @include text('md');
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: token('font-family-title');
 }

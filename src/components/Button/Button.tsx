@@ -3,7 +3,7 @@ import { cx } from '../../utils/cx';
 import type { ControlSize } from '../../utils/types';
 import './Button.scss';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   /** Visual emphasis. */

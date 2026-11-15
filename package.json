@@ -13,7 +13,8 @@
       "require": "./dist/index.cjs"
     },
     "./styles.css": "./dist/styles.css",
-    "./tokens": "./src/tokens/_index.scss"
+    "./tokens": "./src/tokens/_index.scss",
+    "./theme.json": "./src/tokens/theme.json"
   },
   "files": [
     "dist",
@@ -24,9 +25,15 @@
     "**/*.scss"
   ],
   "scripts": {
+    "tokens": "node scripts/build-tokens.mjs",
+    "tokens:check": "node scripts/build-tokens.mjs --check",
+    "predev": "npm run tokens",
     "dev": "storybook dev -p 6006",
+    "prestorybook": "npm run tokens",
     "storybook": "storybook dev -p 6006",
+    "prebuild": "npm run tokens",
     "build": "npm run typecheck && vite build",
+    "prebuild-storybook": "npm run tokens",
     "build-storybook": "storybook build",
     "typecheck": "tsc --noEmit"
   },

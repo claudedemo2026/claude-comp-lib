@@ -11,23 +11,31 @@
     width: var(--_track-width);
     height: var(--_track-height);
     margin: 0;
-    border-radius: token('radius-full');
-    background-color: token('color-control-track');
+    border-radius: token('radius-xl');
+    background-color: token('color-surface-neutral-dark');
     cursor: pointer;
     @include transition(background-color);
     @include focus-visible;
 
     &:checked {
-      background-color: token('color-accent');
+      background-color: token('color-surface-primary-default');
     }
 
     &:checked:not(:disabled):hover {
-      background-color: token('color-accent-hover');
+      background-color: token('color-surface-primary-hover');
+    }
+
+    &:checked:not(:disabled):active {
+      background-color: token('color-surface-primary-pressed');
     }
 
     &:disabled {
+      background-color: token('color-surface-button-disable');
       cursor: not-allowed;
-      opacity: 0.5;
+    }
+
+    &:disabled:checked {
+      background-color: token('color-surface-neutral-dark');
     }
   }
 
@@ -36,8 +44,8 @@
     width: var(--_thumb-size);
     height: var(--_thumb-size);
     margin-left: var(--_inset);
-    border-radius: token('radius-full');
-    background-color: token('color-control-thumb');
+    border-radius: token('radius-xl');
+    background-color: token('color-surface-default');
     box-shadow: token('shadow-sm');
     pointer-events: none;
     @include transition(transform);

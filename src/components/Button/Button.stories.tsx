@@ -10,7 +10,7 @@ const meta = {
   tags: ['autodocs'],
   args: { children: 'Button', onClick: fn() },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['primary', 'secondary', 'ghost', 'danger'] },
+    variant: { control: 'inline-radio', options: ['primary', 'secondary', 'outline', 'ghost', 'danger'] },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
     startIcon: { control: false },
     endIcon: { control: false },
@@ -27,6 +27,7 @@ export const Variants: Story = {
     <Stack direction="row" align="center">
       <Button {...args} variant="primary">Primary</Button>
       <Button {...args} variant="secondary">Secondary</Button>
+      <Button {...args} variant="outline">Outline</Button>
       <Button {...args} variant="ghost">Ghost</Button>
       <Button {...args} variant="danger">Danger</Button>
     </Stack>
@@ -47,7 +48,7 @@ export const WithIcons: Story = {
   render: (args) => (
     <Stack direction="row" align="center">
       <Button {...args} startIcon={<PlusIcon />}>New project</Button>
-      <Button {...args} variant="secondary" endIcon={<ArrowRightIcon />}>Continue</Button>
+      <Button {...args} variant="outline" endIcon={<ArrowRightIcon />}>Continue</Button>
       <Button {...args} variant="danger" startIcon={<TrashIcon />}>Delete</Button>
     </Stack>
   ),
@@ -57,9 +58,11 @@ export const States: Story = {
   render: (args) => (
     <Stack direction="row" align="center">
       <Button {...args} disabled>Disabled</Button>
-      <Button {...args} variant="secondary" disabled>Disabled</Button>
+      <Button {...args} variant="outline" disabled>Disabled</Button>
+      <Button {...args} variant="ghost" disabled>Disabled</Button>
       <Button {...args} loading>Saving…</Button>
       <Button {...args} variant="secondary" loading>Loading</Button>
+      <Button {...args} variant="outline" loading>Loading</Button>
     </Stack>
   ),
 };

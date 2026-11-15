@@ -7,7 +7,7 @@
 /// Reference a design token as a CSS custom property.
 /// Fails the build if the token does not exist, so typos never ship.
 /// @example scss
-///   color: token('color-text-primary'); // → var(--ds-color-text-primary)
+///   color: token('color-text-default'); // → var(--ds-color-text-default)
 @function token($name) {
   @if not list.index(t.$token-names, $name) {
     @error "Unknown design token `#{$name}`.";
