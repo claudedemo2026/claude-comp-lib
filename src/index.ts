@@ -6,6 +6,7 @@ export * from './components/Card';
 export * from './components/Checkbox';
 export * from './components/Chip';
 export * from './components/FormField';
+export * from './global';
 export * from './components/Input';
 export * from './components/PageLayout';
 export * from './components/Radio';

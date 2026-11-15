@@ -1,0 +1,207 @@
+@use '../../tokens' as *;
+
+.ds-sidebar {
+  --_width: 17rem;
+  --_bg: #{token('color-surface-primary-dark-default')};
+  --_fg: #{token('color-text-inverse')};
+  --_muted: rgba(255, 255, 255, 0.64);
+  --_hover: rgba(255, 255, 255, 0.08);
+  --_divider: rgba(255, 255, 255, 0.14);
+  --_accent: #{token('color-surface-secondary-default')};
+  --_pad-x: #{token('space-5')};
+
+  display: flex;
+  flex-direction: column;
+  width: var(--_width);
+  height: 100%;
+  background-color: var(--_bg);
+  color: var(--_fg);
+
+  // Off-canvas drawer on narrow screens.
+  position: fixed;
+  inset-block: 0;
+  left: 0;
+  z-index: token('z-index-overlay');
+  transform: translateX(-100%);
+  @include transition(transform);
+
+  &--open {
+    transform: none;
+    box-shadow: token('shadow-lg');
+  }
+
+  @include breakpoint-up('lg') {
+    position: sticky;
+    top: 0;
+    z-index: auto;
+    transform: none;
+    box-shadow: none;
+  }
+
+  &__scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding-block: token('space-2');
+  }
+
+  // ── Sections ──
+  &__section + &__section {
+    border-top: token('border-width-default') solid var(--_divider);
+  }
+
+  &__section {
+    padding-block: token('space-2');
+  }
+
+  &__section-heading {
+    margin: 0;
+  }
+
+  &__section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: token('space-2') var(--_pad-x);
+    border: 0;
+    background: none;
+    color: var(--_muted);
+    font: inherit;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    @include text('xs', 'semibold');
+    @include transition(color);
+    @include focus-visible(-2px);
+
+    &:hover {
+      color: var(--_fg);
+    }
+  }
+
+  // ── Lists & items ──
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    &[hidden] {
+      display: none;
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: token('space-3');
+    width: 100%;
+    min-height: 2.75rem;
+    padding-block: token('space-2');
+    padding-inline: calc(var(--_pad-x) + var(--_depth, 0) * #{token('space-4')}) var(--_pad-x);
+    border: 0;
+    background: none;
+    color: var(--_fg);
+    font: inherit;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    @include text('sm', 'medium');
+    @include transition(background-color, color);
+    @include focus-visible(-2px);
+
+    &:hover {
+      background-color: var(--_hover);
+    }
+
+    // Accent rail for the current page.
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: token('space-1-5');
+      left: 0;
+      width: 3px;
+      border-radius: 0 token('radius-md') token('radius-md') 0;
+      background-color: var(--_accent);
+      opacity: 0;
+      @include transition(opacity);
+    }
+
+    &--active {
+      background-color: var(--_hover);
+      font-weight: token('font-weight-semibold');
+
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    &--has-active[aria-expanded='false'] .ds-sidebar__item-label {
+      color: var(--_accent);
+    }
+  }
+
+  &__list--nested &__item {
+    color: var(--_muted);
+    min-height: 2.25rem;
+
+    &:hover,
+    &--active {
+      color: var(--_fg);
+    }
+  }
+
+  &__item-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--_muted);
+  }
+
+  &__item-label {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__chevron {
+    flex-shrink: 0;
+    @include transition(transform);
+  }
+
+  [aria-expanded='false'] > &__chevron {
+    transform: rotate(-90deg);
+  }
+
+  &__section-toggle[aria-expanded='false'] > &__chevron {
+    transform: rotate(0deg);
+  }
+
+  &__section-toggle[aria-expanded='true'] > &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__footer {
+    padding: token('space-4') var(--_pad-x);
+    border-top: token('border-width-default') solid var(--_divider);
+    color: var(--_muted);
+    @include text('xs');
+  }
+}
+
+.ds-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(#{token('z-index-overlay')} - 1);
+  background-color: token('color-surface-primary-blur');
+  opacity: 0;
+  pointer-events: none;
+  @include transition(opacity);
+
+  &--visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @include breakpoint-up('lg') {
+    display: none;
+  }
+}
