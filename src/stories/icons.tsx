@@ -42,3 +42,9 @@ export const GlobeIcon = () => (
 export const FolderIcon = () => (
   <svg {...base}><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>
 );
+export const FilterIcon = () => (
+  <svg {...base}><path d="M3 6h18M7 12h10M10 18h4" /></svg>
+);
+export const RefreshIcon = () => (
+  <svg {...base}><path d="M21 12a9 9 0 1 1-2.64-6.36L21 8" /><path d="M21 3v5h-5" /></svg>
+);
